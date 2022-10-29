@@ -1,0 +1,193 @@
+{
+	"info": {
+		"_postman_id": "d5dd8562-fa86-4159-8bdb-8698c193032e",
+		"name": "Google Map",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23215208"
+	},
+	"item": [
+		{
+			"name": "Google map json",
+			"item": [
+				{
+					"name": "Google maps add json",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Google map added\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"const placeid = pm.response.json();\r",
+									"pm.environment.set(\"placeid\", placeid.place_id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"location\":{\r\n\r\n        \"lat\" : -38.383494,\r\n\r\n        \"lng\" : 33.427362\r\n\r\n    },\r\n\r\n    \"accuracy\":50,\r\n\r\n    \"name\":\"main house\",\r\n\r\n    \"phone_number\":\"(+91) 9876543210\",\r\n\r\n    \"address\" : \"29, side layout, cohen 09\",\r\n\r\n    \"types\": [\"shoe park\",\"shop\"],\r\n\r\n    \"website\" : \"http://google.com\",\r\n\r\n    \"language\" : \"english\"\r\n\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{mapurl}}/maps/api/place/add/json?key= qaclick123",
+							"host": [
+								"{{mapurl}}"
+							],
+							"path": [
+								"maps",
+								"api",
+								"place",
+								"add",
+								"json"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": " qaclick123"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Google map delete json",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"map deleted\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"place_id\":\"{{placeid}}\"\r\n\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{mapurl}}/maps/api/place/delete/json?key=qaclick123",
+							"host": [
+								"{{mapurl}}"
+							],
+							"path": [
+								"maps",
+								"api",
+								"place",
+								"delete",
+								"json"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "qaclick123"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Google map xml",
+			"item": [
+				{
+					"name": "Google map add xml",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<root>\r\n    <location>\r\n        <lat>-38.383494</lat>\r\n        <lng>33.427362</lng>\r\n    </location>\r\n    <accuracy>50</accuracy>\r\n    <name>The Mens store</name>\r\n    <phone_number>(+91) 983 893 3937</phone_number>\r\n    <address>Anna Salai, Chennai</address>\r\n    <types>shoe park</types>\r\n    <types>kadai</types>\r\n    <website>http://google.com</website>\r\n    <language>tamil-IN</language>\r\n</root>\r\n",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{mapurl}}/maps/api/place/add/xml?key= qaclick123",
+							"host": [
+								"{{mapurl}}"
+							],
+							"path": [
+								"maps",
+								"api",
+								"place",
+								"add",
+								"xml"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": " qaclick123"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "google map delete xml",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<root>\r\n    <place_id>7a634fb2af840672adbee6927eafc117</place_id>\r\n</root>\r\n",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{mapurl}}/maps/api/place/delete/xml?key=qaclick123",
+							"host": [
+								"{{mapurl}}"
+							],
+							"path": [
+								"maps",
+								"api",
+								"place",
+								"delete",
+								"xml"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "qaclick123"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
